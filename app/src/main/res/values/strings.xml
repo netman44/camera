@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Camera_demo</string>
+    <string name="title_activity_suface_view_test">SufaceViewTestActivity</string>
+</resources>
