@@ -31,6 +31,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import com.google.android.cameraview.AspectRatio;
 
 /**
  * A simple dialog that allows user to pick an aspect ratio.

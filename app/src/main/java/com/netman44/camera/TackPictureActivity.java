@@ -49,6 +49,7 @@ import android.view.View;
 import android.widget.Toast;
 import com.google.android.cameraview.AspectRatio;
 import com.google.android.cameraview.CameraView;
+import com.netman44.camera.AspectRatioFragment.Listener;
 
 /**
  * This demo app saves the taken picture to a constant file.
@@ -56,7 +57,7 @@ import com.google.android.cameraview.CameraView;
  */
 public class TackPictureActivity extends AppCompatActivity implements
         ActivityCompat.OnRequestPermissionsResultCallback,
-        AspectRatioFragment.Listener {
+        Listener {
 
     private static final String TAG = "MainActivity";
 

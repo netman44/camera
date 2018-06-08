@@ -18,4 +18,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SufaceViewTestActivity.class);
         startActivity(intent);
     }
+
+    public void tackPicture(View view) {
+        Intent intent = new Intent(this, TackPictureActivity.class);
+        startActivity(intent);
+    }
 }
