@@ -1,1 +1,3 @@
 include ':app', ':mylibrary'
+include ':camera_library'
+project(':camera_library').projectDir = file('camera_library')
