@@ -30,6 +30,7 @@ import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+import com.google.android.cameraview.CameraViewImpl.CameraCallback;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -407,7 +408,7 @@ public class CameraView extends FrameLayout {
         mImpl.takePicture();
     }
 
-    private class CallbackBridge implements CameraViewImpl.Callback {
+    private class CallbackBridge implements CameraCallback {
 
         private final ArrayList<Callback> mCallbacks = new ArrayList<>();
 
@@ -506,7 +507,7 @@ public class CameraView extends FrameLayout {
     }
 
     /**
-     * Callback for monitoring events about {@link CameraView}.
+     * CameraCallback for monitoring events about {@link CameraView}.
      */
     @SuppressWarnings("UnusedParameters")
     public abstract static class Callback {

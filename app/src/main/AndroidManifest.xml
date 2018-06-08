@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="com.netman44.camera"
           xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18"/>
 
     <application
         android:allowBackup="true"
@@ -21,6 +24,9 @@
             android:label="@string/title_activity_suface_view_test"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:theme="@style/Theme.Demo"
+            android:name=".TackPictureActivity"></activity>
     </application>
 
 </manifest>

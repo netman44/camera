@@ -16,6 +16,11 @@
 
 package com.google.android.cameraview;
 
+import java.nio.ByteBuffer;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.SortedSet;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.ImageFormat;
@@ -34,11 +39,6 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.Surface;
-
-import java.nio.ByteBuffer;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.SortedSet;
 
 @SuppressWarnings("MissingPermission")
 @TargetApi(21)
@@ -196,7 +196,7 @@ class Camera2 extends CameraViewImpl {
 
     private int mDisplayOrientation;
 
-    Camera2(Callback callback, PreviewImpl preview, Context context) {
+    Camera2(CameraCallback callback, PreviewImpl preview, Context context) {
         super(callback, preview);
         mCameraManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
         mPreview.setCallback(new PreviewImpl.Callback() {
@@ -208,7 +208,7 @@ class Camera2 extends CameraViewImpl {
     }
 
     @Override
-    boolean start() {
+    public boolean start() {
         if (!chooseCameraIdByFacing()) {
             return false;
         }
@@ -219,7 +219,7 @@ class Camera2 extends CameraViewImpl {
     }
 
     @Override
-    void stop() {
+    public void stop() {
         if (mCaptureSession != null) {
             mCaptureSession.close();
             mCaptureSession = null;
@@ -235,12 +235,12 @@ class Camera2 extends CameraViewImpl {
     }
 
     @Override
-    boolean isCameraOpened() {
+    public boolean isCameraOpened() {
         return mCamera != null;
     }
 
     @Override
-    void setFacing(int facing) {
+    public void setFacing(int facing) {
         if (mFacing == facing) {
             return;
         }
@@ -252,17 +252,17 @@ class Camera2 extends CameraViewImpl {
     }
 
     @Override
-    int getFacing() {
+    public int getFacing() {
         return mFacing;
     }
 
     @Override
-    Set<AspectRatio> getSupportedAspectRatios() {
+    public Set<AspectRatio> getSupportedAspectRatios() {
         return mPreviewSizes.ratios();
     }
 
     @Override
-    boolean setAspectRatio(AspectRatio ratio) {
+    public boolean setAspectRatio(AspectRatio ratio) {
         if (ratio == null || ratio.equals(mAspectRatio) ||
                 !mPreviewSizes.ratios().contains(ratio)) {
             // TODO: Better error handling
@@ -279,12 +279,12 @@ class Camera2 extends CameraViewImpl {
     }
 
     @Override
-    AspectRatio getAspectRatio() {
+    public AspectRatio getAspectRatio() {
         return mAspectRatio;
     }
 
     @Override
-    void setAutoFocus(boolean autoFocus) {
+    public void setAutoFocus(boolean autoFocus) {
         if (mAutoFocus == autoFocus) {
             return;
         }
@@ -303,12 +303,12 @@ class Camera2 extends CameraViewImpl {
     }
 
     @Override
-    boolean getAutoFocus() {
+    public boolean getAutoFocus() {
         return mAutoFocus;
     }
 
     @Override
-    void setFlash(int flash) {
+    public void setFlash(int flash) {
         if (mFlash == flash) {
             return;
         }
@@ -328,12 +328,12 @@ class Camera2 extends CameraViewImpl {
     }
 
     @Override
-    int getFlash() {
+    public int getFlash() {
         return mFlash;
     }
 
     @Override
-    void takePicture() {
+    public void takePicture() {
         if (mAutoFocus) {
             lockFocus();
         } else {
@@ -342,7 +342,7 @@ class Camera2 extends CameraViewImpl {
     }
 
     @Override
-    void setDisplayOrientation(int displayOrientation) {
+    public void setDisplayOrientation(int displayOrientation) {
         mDisplayOrientation = displayOrientation;
         mPreview.setDisplayOrientation(mDisplayOrientation);
     }
